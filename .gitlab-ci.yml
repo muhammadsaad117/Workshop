@@ -1,0 +1,25 @@
+image: node:14
+stages:
+# - build-mac
+- build-test
+# - release
+
+# - fetch-version
+# - build
+
+cache:
+paths:
+- node_modules/
+
+.base:
+before_script:
+- yarn install
+
+build-test:
+extends: .base
+stage: build-test
+script:
+- node hello.js
+artifacts:
+paths:
+- hello.js
